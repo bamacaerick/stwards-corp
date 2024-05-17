@@ -1,0 +1,110 @@
+/**
+ * 8.0 Alignments
+ */
+
+.wp_editor_content .post__title {
+	color: #475529;
+	font-weight: bold;
+	font-size: 22px;
+	margin-bottom: 20px;
+}
+
+.wp_editor_content ol{
+	list-style-type: decimal;
+}
+
+.wp_editor_content ul,
+.wp_editor_content ol{
+	padding-left: 20px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+  text-align: left;
+  line-height: 130%;
+}
+
+.wp_editor_content ul{
+  list-style-type: unset;
+}
+
+.wp_editor_content a{
+	color: #000000;
+	font-weight: bold;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.wp_editor_content p{
+	margin-bottom: 20px;
+	line-height: 140%;
+  text-align: left;
+}
+
+.wp_editor_content strong{
+	font-weight: bold;
+}
+
+.wp_editor_content em{
+	font-style: italic;
+}
+
+.alignleft {
+	display: inline;
+	float: left;
+}
+
+.alignright {
+	display: inline;
+	float: right;
+}
+
+.aligncenter {
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
+}
+
+blockquote.alignleft,
+.wp-caption.alignleft,
+img.alignleft {
+	margin: 0.4em 1.6em 1.6em 0;
+}
+
+blockquote.alignright,
+.wp-caption.alignright,
+img.alignright {
+	margin: 0.4em 0 1.6em 1.6em;
+}
+
+blockquote.aligncenter,
+.wp-caption.aligncenter,
+img.aligncenter {
+	clear: both;
+	margin-top: 0.4em;
+	margin-bottom: 1.6em;
+}
+
+.wp-caption.alignleft,
+.wp-caption.alignright,
+.wp-caption.aligncenter {
+	margin-bottom: 1.2em;
+}
