@@ -1,4 +1,16 @@
 <?php
+
+
+function custom_get_page_id($nicename)
+{
+    global $wpdb;
+    $the_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '$nicename' and post_type='page' AND post_status='publish'");
+    return $the_id;
+}
+
+$HOMEID = custom_get_page_id('inicio');
+
+
 add_action('after_setup_theme', 'generic_setup');
 function generic_setup()
 {
@@ -14,16 +26,32 @@ function generic_setup()
     if (!isset($content_width)) {
         $content_width = 1920;
     }
-    register_nav_menus(array( 'main-menu' => esc_html__('Main Menu', 'generic') ));
+    register_nav_menus(
+        array(
+            'main-menu' => esc_html__('Main Menu', 'generic'),
+            'sidebar-boxes' => esc_html__('Sidebar Boxes', 'generic')
+        )
+    );
 }
 add_action('wp_enqueue_scripts', 'generic_enqueue');
 function generic_enqueue()
 {
+    // wp_enqueue_style('pt-sans-narrow-font', 'https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap');
+
     wp_enqueue_style('generic-style', get_stylesheet_uri());
     wp_enqueue_script('jquery');
-    wp_register_script('generic-videos', get_template_directory_uri() . '/js/videos.js');
-    wp_enqueue_script('generic-videos');
-    wp_add_inline_script('generic-videos', 'jQuery(document).ready(function($){$("#wrapper").vids();});');
+    // wp_register_script('generic-videos', get_template_directory_uri() . '/js/videos.js');
+    // wp_enqueue_script('generic-videos');
+    // wp_add_inline_script('generic-videos', 'jQuery(document).ready(function($){$("#wrapper").vids();});');
+
+    // if(is_page_template('page-home.php')){
+    //     wp_enqueue_style('swiper-css', get_template_directory_uri() . '/css/swiper.min.css', false, '1.1', '');
+    //     wp_register_script('swiper-custom', get_template_directory_uri() . '/js/swiper.min.js');
+    //     wp_enqueue_script('swiper-custom');
+    // }
+    wp_register_script('general', get_template_directory_uri() . '/js/general.js');
+    wp_enqueue_script('general');
+
 }
 add_action('wp_footer', 'generic_footer');
 function generic_footer()
@@ -120,14 +148,7 @@ function generic_read_more_link()
         return ' <a href="' . esc_url(get_permalink()) . '" class="more-link">' . sprintf(__('...%s', 'generic'), '<span class="screen-reader-text">  ' . esc_html(get_the_title()) . '</span>') . '</a>';
     }
 }
-add_filter('excerpt_more', 'generic_excerpt_read_more_link');
-function generic_excerpt_read_more_link($more)
-{
-    if (!is_admin()) {
-        global $post;
-        return ' <a href="' . esc_url(get_permalink($post->ID)) . '" class="more-link">' . sprintf(__('...%s', 'generic'), '<span class="screen-reader-text">  ' . esc_html(get_the_title()) . '</span>') . '</a>';
-    }
-}
+
 add_filter('big_image_size_threshold', '__return_false');
 add_filter('intermediate_image_sizes_advanced', 'generic_image_insert_override');
 function generic_image_insert_override($sizes)
@@ -181,4 +202,79 @@ function generic_comment_count($count)
     } else {
         return $count;
     }
+}
+
+/* ----------- // CUSTOM PANELS // ----------- */
+/* ----------- // ====== ====== // ----------- */
+
+add_action('init', 'themePostTypes');
+
+function themePostTypes()
+{
+    $services = array(
+            'name' => _x('Services', 'post type general name'),
+            'singular_name' => _x('Services', 'post type singular name'),
+            'add_new' => _x('Add new', 'Service'),
+            'add_new_item' => __('Add new Service'),
+            'edit_item' => __('Edit Service'),
+            'new_item' => __('Add Service'),
+            'view_item' => __('Seen Service'),
+            'search_items' => __('Search Service'),
+            'not_found' =>  __('Service Not Found'),
+            'not_found_in_trash' => __('No se encontraron Especialidad en la papelera.'),
+            'parent_item_colon' => '',
+            'menu_name' => 'Services'
+        );
+
+    register_post_type(
+        'Services',
+        array('labels' => $services,
+            'description' => 'Services',
+            'publicly_queryable' => true,
+            'public' => true,
+            'show_ui' => true,
+            'hierarchical' => false, // like posts
+            'show_in_rest' => true,
+            'supports' => array(
+                'title',
+                'page-attributes',
+                'editor',
+                'thumbnail',
+            ),
+        )
+    );
+
+
+    $homebanner = array(
+            'name' => _x('Banner Home', 'post type general name'),
+            'singular_name' => _x('Banner', 'post type singular name'),
+            'add_new' => _x('Añadir Nuevo', 'Banner'),
+            'add_new_item' => __('Añadir Nuevo Banner'),
+            'edit_item' => __('Editar Banner'),
+            'new_item' => __('Añadir Banner'),
+            'view_item' => __('Ver Banner'),
+            'search_items' => __('Buscar Banner'),
+            'not_found' =>  __('Banner no existente.'),
+            'not_found_in_trash' => __('No se encontraron Banners en la papelera.'),
+            'parent_item_colon' => '',
+            'menu_name' => 'Banner Home'
+        );
+
+    register_post_type(
+        'Banner Home',
+        array('labels' => $homebanner,
+            'description' => 'Banner',
+            'publicly_queryable' => true,
+            'public' => true,
+            'show_ui' => true,
+            'hierarchical' => false, // like posts
+            'supports' => array(
+                'title',
+                'page-attributes',
+                'editor',
+                'thumbnail',
+            ),
+        )
+    );
+
 }
