@@ -36,7 +36,9 @@ function generic_setup()
 add_action('wp_enqueue_scripts', 'generic_enqueue');
 function generic_enqueue()
 {
-    // wp_enqueue_style('pt-sans-narrow-font', 'https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap');
+    wp_enqueue_style('dm-sans-font', '
+https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap
+');
 
     wp_enqueue_style('generic-style', get_stylesheet_uri());
     wp_enqueue_script('jquery');

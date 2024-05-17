@@ -8,8 +8,8 @@ Requires PHP: 8.0
 */
 
 // @import 'node_modules/bootstrap/scss/bootstrap';
+@import 'bootstrap.min';
 @import 'config'; // Override bootstrap variables values
-
 @import 'wpeditor';
 @import 'mixins';
 @import 'utilities';
