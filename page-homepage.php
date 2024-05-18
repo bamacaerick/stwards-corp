@@ -9,27 +9,23 @@
     <?php get_template_part('partials/banner'); ?>
     <?php get_template_part('partials/services'); ?>
 
+    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+       
     <div class="experience">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    From homepage content 
+                    <?php the_title(); ?> 
+                    <?php the_content(); ?> 
                 </div>
             </div>
         </div>
     </div>
+    <?php endwhile; endif; ?>
+    <?php wp_reset_query(); ?>
 
-    <div class="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    From contact page (Run a query to get the contact page and the custom fields)
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <?php get_template_part('partials/news'); ?>
+    <?php get_template_part('partials/contact'); ?>
+    <?php // get_template_part('partials/news'); ?>
 
 </main>
 <?php get_footer(); ?>
