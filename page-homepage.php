@@ -25,7 +25,7 @@
     <?php wp_reset_query(); ?>
 
     <?php get_template_part('partials/contact'); ?>
-    <?php // get_template_part('partials/news'); ?>
+    <?php get_template_part('partials/news'); ?>
 
 </main>
 <?php get_footer(); ?>

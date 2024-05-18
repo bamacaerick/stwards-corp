@@ -73,10 +73,10 @@
 
 <body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
-    <header id="header" role="banner">
+    <header id="header" role="banner" class="position-relative">
         <div class="container" id="branding">
             <div class="row">
-                <div class="col-6 col-lg-4">
+                <div class="col-6 col-lg-4 py-3">
                     <div id="site-title" itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
                         <?php
                         if (is_front_page() || is_home() || is_front_page() && is_home()) {
@@ -99,22 +99,31 @@
                         } else {
                             echo esc_url($logo);
                         }
-                        echo '" alt="' . esc_attr(get_bloginfo('name')) . '" id="logo" class="' . esc_attr($nologo) . '" itemprop="url" /></span></a>';
+                        echo '" alt="' . esc_attr(get_bloginfo('name')) . '" id="logo" class="' . esc_attr($nologo) . '" itemprop="url" width="180" height="58" /></span></a>';
                         if (is_front_page() || is_home() || is_front_page() && is_home()) {
                             echo '</h1>';
                         }
                     ?>
                     </div>
-                    <div id="site-description" <?php if (!is_single()) {
+                    <div id="site-description" class="sr-only" <?php if (!is_single()) {
     echo ' itemprop="description"';
     } ?>><?php bloginfo('description'); ?></div>
                 </div>
                 <div class="col-6 col-lg-8">
-                    <nav id="menu" role="navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
-                        <button type="button" class="menu-toggle"><span class="menu-icon">&#9776;</span><span
-                                class="menu-text screen-reader-text"><?php esc_html_e(' Menu', 'generic'); ?></span></button>
-                        <?php wp_nav_menu(array( 'theme_location' => 'main-menu', 'link_before' => '<span itemprop="name">', 'link_after' => '</span>' )); ?>
-                    </nav>
+                    <div class="row align-items-end h-100">
+                        <div class="col-12">
+                            <div class="header-contact text-end pb-2">
+                                <a href="mailto:sales@stwards.com" class="header-contact-email">sales@stwards.com</a> 
+                                <span>|</span>
+                                <a href="tel:5073140714" class="header-contact-phone">Oficina 1: (+507) 314-0714</a>
+                            </div>
+                            <nav id="menu" class="menu-wrapper" role="navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
+                                <button type="button" class="menu-toggle d-lg-none"><span class="menu-icon">&#9776;</span><span
+                                        class="menu-text screen-reader-text"><?php esc_html_e(' Menu', 'generic'); ?></span></button>
+                                <?php wp_nav_menu(array( 'theme_location' => 'main-menu', 'container' => false,'menu_class' => 'text-end menu', 'link_before' => '<span itemprop="name">', 'link_after' => '</span>' )); ?>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

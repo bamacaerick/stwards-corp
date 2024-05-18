@@ -1,0 +1,50 @@
+.menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;  
+    
+    & > &-item {
+        display: inline-block;
+        margin: 0 toRem(5);
+
+        &.current-menu-item {
+            & > a {
+                font-weight: bold;
+            }
+        }
+
+        &.current-menu-item,
+        &:hover {
+            & > a {
+                border-bottom: 4px solid $primary;
+            }
+        }
+
+        & > a {
+            text-decoration: none;
+            display: inline-block;
+            padding:toRem(10);
+            color: $black;
+        }
+
+        &.menu-item-has-children {
+            & > a {
+                &::after {
+                    content: '';
+                    background: transparent url('./images/icons/caret.svg') center right no-repeat;
+                    background-size: 10px auto;
+                    display: inline-block;
+                    width: toRem(20);
+                    height: toRem(8);
+                }
+            }
+        }
+
+        .sub-menu {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            background-color: $white;
+        }
+    }
+}
