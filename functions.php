@@ -246,6 +246,32 @@ function themePostTypes()
         )
     );
 
+    /**Herramientas categories*/
+    $servicesCategoryLabels = array(
+		'name' => _x( 'Categorías', 'taxonomy general name' ),
+		'singular_name' => _x( 'Categoría', 'taxonomy singular name' ),
+		'search_items' =>  __( 'Buscar Categorías' ),
+		'all_items' => __( 'Todas las Categorías' ),
+		'parent_item' => __( 'Categoría Padre' ),
+		'parent_item_colon' => __( 'Categoría Padre:' ),
+		'edit_item' => __( 'Editar Categoría' ), 
+		'update_item' => __( 'Actualizar Categoría' ),
+		'add_new_item' => __( 'Agregar nueva Categoría' ),
+		'new_item_name' => __( 'Nueva Categoría nombre' ),
+		'menu_name' => __( 'Categorías' ),
+    ); 	
+		
+	register_taxonomy('categoria',array('services'), array(
+        'hierarchical' => true,
+        'labels' => $servicesCategoryLabels,
+        'show_ui' => true,
+		'show_in_rest' => true,
+    	'show_admin_column' => true,
+        'query_var' => true,
+        'rewrite' => array( 'slug' => 'categoria' ),
+	));
+	register_taxonomy_for_object_type('categoria', 'Services');
+
 
     $homebanner = array(
             'name' => _x('Banner Home', 'post type general name'),
