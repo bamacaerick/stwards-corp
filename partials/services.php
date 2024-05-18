@@ -7,8 +7,8 @@ services query<?php
     <h1><?php the_title(); ?></h1>
     <p><?php the_content(); ?></p>
     <img src="<?php echo $foto_servicio; ?>" alt="">
-    <span> <?php the_field('correo_electronico') ?></span>
-    <span> <?php the_field('telefono') ?></span>
+    <span> <?php the_field('email') ?></span>
+    <span> <?php the_field('phone') ?></span>
 <?php 
     endwhile; wp_reset_query();
 ?>  
