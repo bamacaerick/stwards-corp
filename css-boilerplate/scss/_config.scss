@@ -2,6 +2,17 @@
 //  config file for global styles, variables, sizes, fonts, etc. 
 //
 
+// Colors
+$white: #ffffff;
+$black: #000000;
+$primary: #4361EE;
+$theme-black: #242424;
+
 :root {
     --font-family-sans-serif: "DM Sans", sans-serif;
 }
+
+body {
+    color: $theme-black;
+}
+
