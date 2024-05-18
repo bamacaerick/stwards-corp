@@ -1,0 +1,8 @@
+.footer {
+    background-color: $gray;
+
+    &-address {
+        font-size: toRem(12);
+        color: $white;
+    }
+}
