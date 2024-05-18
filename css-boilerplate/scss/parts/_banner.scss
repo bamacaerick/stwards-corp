@@ -1,0 +1,22 @@
+.banner {
+    height: calc(100vh - 100px);
+    width: 100%;
+
+    &-bg {
+        background-size: cover;
+        background-position: center;
+    }
+
+    &-layer {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(86deg, rgba(21, 29, 57, 0.56) 53.01%, rgba(62, 87, 181, 0.32) 136.61%);
+    }
+
+    &-text {
+        font-size: toRem(18);
+    }
+}

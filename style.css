@@ -10162,6 +10162,9 @@ img.aligncenter {
   background-color: #ffffff;
 }
 
+.header {
+  height: 100px;
+}
 .header-contact-email, .header-contact-phone {
   color: #242424;
   text-decoration: none;
@@ -10177,7 +10180,61 @@ img.aligncenter {
   font-size: 0.75rem;
   color: #ffffff;
 }
+.footer-link {
+  text-decoration: none;
+  color: #242424;
+}
+.footer-link:hover {
+  text-decoration: underline;
+}
+.footer-social-icon {
+  display: inline-block;
+  width: 37px;
+  height: 37px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.footer-social-icon-ig {
+  background: #D9D9D9 url("./images/icons/instagram.png") center no-repeat;
+  background-size: 20px auto;
+}
+.footer-social-icon-lin {
+  background: #D9D9D9 url("./images/icons/linkedin.png") center no-repeat;
+  background-size: 18px auto;
+}
+.footer-social-icon span {
+  display: block;
+  padding-top: 50px;
+}
 
 .bg-primary {
   background-color: #4361EE;
+}
+
+.banner {
+  height: calc(100vh - 100px);
+  width: 100%;
+}
+.banner-bg {
+  background-size: cover;
+  background-position: center;
+}
+.banner-layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(86deg, rgba(21, 29, 57, 0.56) 53.01%, rgba(62, 87, 181, 0.32) 136.61%);
+}
+.banner-text {
+  font-size: 1.125rem;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.hero {
+  font-size: 4rem;
 }
