@@ -10131,9 +10131,6 @@ img.aligncenter {
   padding: 0;
   list-style: none;
 }
-.menu-wrapper {
-  height: 2.5rem;
-}
 .menu > .menu-item {
   display: inline-block;
   margin: 0 0.3125rem;
@@ -10171,4 +10168,16 @@ img.aligncenter {
 }
 .header-contact-email:hover, .header-contact-phone:hover {
   text-decoration: underline;
+}
+
+.footer {
+  background-color: #F7F7F7;
+}
+.footer-address {
+  font-size: 0.75rem;
+  color: #ffffff;
+}
+
+.bg-primary {
+  background-color: #4361EE;
 }

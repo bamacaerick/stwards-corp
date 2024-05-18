@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12">
                    <?php  the_title(); ?>
-                   <?php  the_content(); ?>
+                   <?php  the_excerpt(); ?>
                    <span> <?php the_field('title_questions') ?> </span><br>
                    <span> <?php the_field('content_title_questions') ?> </span><br>
                    <span> <?php the_field('title_need_support') ?> </span><br>
