@@ -30,6 +30,8 @@ if ($custom_taxonomy_terms && !is_wp_error($custom_taxonomy_terms)) {
                 //the_content();
                 //$image_full = get_the_post_thumbnail_url(get_the_ID(),'full'); 
                 //echo '<img src="'.$image_full.'">';
+                the_field('Email');
+                the_field('Phone');
             }
             echo '</ul>';
         } else {
