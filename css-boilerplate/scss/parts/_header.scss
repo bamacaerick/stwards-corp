@@ -1,0 +1,13 @@
+.header {
+    &-contact {
+        &-email,
+        &-phone {
+            color: $theme-black;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
