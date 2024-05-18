@@ -3,10 +3,6 @@
     padding: 0;
     list-style: none;  
     
-    &-wrapper {
-        height: toRem(40);
-    }
-
     & > &-item {
         display: inline-block;
         margin: 0 toRem(5);
