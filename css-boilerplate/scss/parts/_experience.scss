@@ -1,0 +1,21 @@
+.experience {
+    background-color: $theme-black;
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    
+    @media (max-width: $lg) {
+        background-image: none!important;
+    }
+
+    &-description {
+        ::before {
+            content: '';
+            background-color: $primary;
+            width: 60px;
+            height: 4px;
+            display: block;
+            margin-bottom: 10px;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+.home-services {
+    background-color: $white;
+    border-radius: 24px 24px 0 0;
+    margin-top: -40px;
+
+    &-content {
+
+        &-heading {
+            border-left: 4px solid $primary;
+            padding: 0 15px;
+
+            @media (min-width: $md) {
+                padding: 0 76px;
+            } 
+                
+        }
+
+        &-info {
+            padding: 0 20px;
+
+            @media (min-width: $md) {
+                padding: 0 80px;
+            } 
+        }
+    }
+}
