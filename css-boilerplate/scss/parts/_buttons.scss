@@ -1,0 +1,14 @@
+.button {
+    &-primary {
+        background-color: $primary;
+        color: $white;
+        display: inline-block;
+        padding: toRem(10) toRem(20);
+        text-decoration: none;
+
+        &:hover {
+            background-color: $primary-hover;
+            color: $white;
+        }
+    }
+}

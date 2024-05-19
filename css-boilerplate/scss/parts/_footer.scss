@@ -5,4 +5,36 @@
         font-size: toRem(12);
         color: $white;
     }
+
+    &-link {
+        text-decoration: none;
+        color: $theme-black;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &-social-icon {
+        display: inline-block;
+        width: 37px;
+        height: 37px;
+        overflow: hidden;
+        border-radius: 50%;
+
+        &-ig {
+            background: $gray-dark url('./images/icons/instagram.png') center no-repeat;
+            background-size: 20px auto;
+        }
+        
+        &-lin {
+            background: $gray-dark url('./images/icons/linkedin.png') center no-repeat;
+            background-size: 18px auto;
+        }
+
+        span {
+            display: block;
+            padding-top: 50px;
+        }
+    }
 }

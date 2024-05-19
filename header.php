@@ -110,17 +110,17 @@
     } ?>><?php bloginfo('description'); ?></div>
                 </div>
                 <div class="col-6 col-lg-8">
-                    <div class="row align-items-end h-100">
+                    <div class="row align-items-lg-end h-100">
                         <div class="col-12">
-                            <div class="header-contact text-end pb-2">
+                            <div class="header-contact text-end pb-2 d-none d-lg-block">
                                 <a href="mailto:sales@stwards.com" class="header-contact-email">sales@stwards.com</a> 
                                 <span>|</span>
                                 <a href="tel:5073140714" class="header-contact-phone">Oficina 1: (+507) 314-0714</a>
                             </div>
-                            <nav id="menu" class="menu-wrapper" role="navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
-                                <button type="button" class="menu-toggle d-lg-none"><span class="menu-icon">&#9776;</span><span
+                            <nav id="menu" class="menu-wrapper text-end" role="navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
+                                <button type="button" class="menu-toggle d-lg-none mt-4"><span class="menu-icon">&#9776;</span><span
                                         class="menu-text screen-reader-text"><?php esc_html_e(' Menu', 'generic'); ?></span></button>
-                                <?php wp_nav_menu(array( 'theme_location' => 'main-menu', 'container' => false,'menu_class' => 'text-end menu', 'link_before' => '<span itemprop="name">', 'link_after' => '</span>' )); ?>
+                                <?php wp_nav_menu(array( 'theme_location' => 'main-menu', 'container' => false,'menu_class' => 'text-end menu d-none d-lg-block', 'link_before' => '<span itemprop="name">', 'link_after' => '</span>' )); ?>
                             </nav>
                         </div>
                     </div>
