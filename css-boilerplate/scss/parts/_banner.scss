@@ -19,4 +19,13 @@
     &-text {
         font-size: toRem(18);
     }
+
+    &-video-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 100px);
+        object-fit: cover;
+    }
 }

@@ -1,0 +1,34 @@
+.contact {
+    &-home {
+
+        &-box {
+            background-color: $white;
+            padding: toRem(24);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            width: 100%;
+
+            @media (min-width: $lg) {
+                width: 400px;
+            }
+
+            &-icon {
+                padding-left: toRem(32);
+                &.phone {
+                    background: transparent url('./images/icons/phone.svg') left top no-repeat;
+                    background-size: 24px;
+                }
+                &.mail {
+                    background: transparent url('./images/icons/mail.svg') left top no-repeat;
+                    background-size: 24px;
+                }
+                &.clock {
+                    background: transparent url('./images/icons/clock.svg') left top no-repeat;
+                    background-size: 24px;
+                }
+            }
+        }
+    }
+}
