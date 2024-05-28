@@ -17,11 +17,11 @@
                     <div class="col-12 col-md-10">
                         <div class="row">
                             <div class="col-12 col-lg-4">
-                                <h2 class="h1 text-white fw-bold mb-3"><?php the_title(); ?></h2> 
+                                <h2 class="h1 text-white mb-3"><?php the_title(); ?></h2> 
                             </div>
                             <div class="col-12 col-lg-5">
                                 <div class="experience-description pt-1">
-                                    <p class="text-white m-0">
+                                    <p class="text-white m-0 lato-regular">
                                         <?php echo get_the_content(); ?> 
                                     </p>
                                 </div>

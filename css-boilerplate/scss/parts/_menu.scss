@@ -1,4 +1,14 @@
+.single-post .menu > .menu-item.news,
+.single-services .menu > .menu-item.services {
+    a {
+        font-weight: bold;
+        border-bottom: 4px solid $primary;
+    }
+} 
+
 .menu {
+    $menu: &;
+
     margin: 0;
     padding: 0;
     list-style: none;  
@@ -6,7 +16,7 @@
     & > &-item {
         display: inline-block;
         margin: 0 toRem(5);
-
+        
         &.current-menu-item {
             & > a {
                 font-weight: bold;
@@ -25,6 +35,7 @@
             display: inline-block;
             padding:toRem(10);
             color: $black;
+            border-bottom: 4px solid $white;
         }
 
         &.menu-item-has-children {
@@ -45,6 +56,57 @@
             position: absolute;
             bottom: 0;
             background-color: $white;
+        }
+    }
+
+    &-wrapper.toggled {
+        .menu {
+            display: block!important;
+            position: absolute;
+            left: 0;
+            right: 0;
+            z-index: 9;
+            top: 90px;
+            background-color: $white;;
+        }
+    }
+
+    &-toggle {
+        background: transparent url('./images/icons/menu.svg') no-repeat center;
+        background-size: contain;
+        border: 0;
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+    }
+
+
+    // Styles for services page
+    &-services {
+        display: inline-block;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        &-all {
+            margin: 0 toRem(5) toRem(10);
+        }
+
+        & .menu-item {
+            display: inline-block;
+            margin: 0 toRem(5) toRem(10);
+
+            a {
+                @extend .button;
+                @extend .button-primary-reverse;
+            }
+
+            &.active {
+                a {
+                    background-color: $primary;
+                    color: $white;
+                }
+            }
         }
     }
 }

@@ -1,13 +1,11 @@
 <?php 
     /**
-     * Template name: services
+     * Template name: news
      */
 
     get_header(); 
 ?>
 <main id="content" role="main">
-
-   
     <?php 
         if (have_posts()) : while (have_posts()) : the_post(); 
         $imagenHeading = get_the_post_thumbnail_url(get_the_ID(),'full');  
@@ -26,6 +24,8 @@
     <?php endwhile; endif; ?>
     <?php wp_reset_query(); ?>
 
-    <?php get_template_part('partials/services'); ?>
+    <?php get_template_part('partials/news'); ?>
+
+    
 </main>
 <?php get_footer(); ?>

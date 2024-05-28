@@ -23,7 +23,8 @@ $xxl: 1400px;
 }
 
 body {
-    color: $theme-black;
+    font-family: var(--font-family-sans-serif)!important;
+    color: $theme-black!important;
 }
 
 a {

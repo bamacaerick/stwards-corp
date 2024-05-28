@@ -1,16 +1,5 @@
 <?php
 
-
-function custom_get_page_id($nicename)
-{
-    global $wpdb;
-    $the_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '$nicename' and post_type='page' AND post_status='publish'");
-    return $the_id;
-}
-
-$HOMEID = custom_get_page_id('inicio');
-
-
 add_action('after_setup_theme', 'generic_setup');
 function generic_setup()
 {
@@ -27,30 +16,63 @@ function generic_setup()
         $content_width = 1920;
     }
     register_nav_menus(
-        array(
-            'main-menu' => esc_html__('Main Menu', 'generic'),
-            'sidebar-boxes' => esc_html__('Sidebar Boxes', 'generic')
-        )
+        array( 
+            'main-menu' => esc_html__( 'Main Menu', 'generic' ),
+            'services-menu' => esc_html__( 'Services Menu', 'generic' ),
+            )
     );
+
+    
+    if (function_exists('add_image_size')) {
+        add_image_size('header_internal', 1200, 500, true); //post list thumbnail
+        add_image_size('header_internal_mobile', 600, 400, true); //post list thumbnail
+        add_image_size('news_listing', 750, 470); //post list thumbnail
+    }
 }
+
+
+function add_additional_class_on_li($classes, $item, $args)
+{
+    $term = isset($_GET['tab']) ? $_GET['tab'] : '';
+
+    if($term !== '' && strpos($item->url, $term) !== false) {
+        $classes[] = 'active';
+    }
+    return $classes;
+}
+add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
+
+
+function add_data_slug_on_link($atts, $item, $args)
+{
+    if($args->theme_location == 'services-menu') {
+        $itemUrl = str_replace('?', '', $item->url);
+        $atts['data-slug'] = $itemUrl;
+    }
+    return $atts;
+}
+add_filter('nav_menu_link_attributes', 'add_data_slug_on_link', 10, 3);
+
+
+
 add_action('wp_enqueue_scripts', 'generic_enqueue');
 function generic_enqueue()
 {
-    wp_enqueue_style('dm-sans-font', '
-https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap
-');
+    wp_enqueue_style('dm-sans-font', 'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
     wp_enqueue_style('generic-style', get_stylesheet_uri());
     wp_enqueue_script('jquery');
-    // wp_register_script('generic-videos', get_template_directory_uri() . '/js/videos.js');
-    // wp_enqueue_script('generic-videos');
-    // wp_add_inline_script('generic-videos', 'jQuery(document).ready(function($){$("#wrapper").vids();});');
 
-    // if(is_page_template('page-home.php')){
-    //     wp_enqueue_style('swiper-css', get_template_directory_uri() . '/css/swiper.min.css', false, '1.1', '');
-    //     wp_register_script('swiper-custom', get_template_directory_uri() . '/js/swiper.min.js');
-    //     wp_enqueue_script('swiper-custom');
-    // }
+    if(is_page_template('page-services.php')){
+        wp_enqueue_style('swiper-css', get_template_directory_uri() . '/css/swiper.min.css', false, '1.1', '');
+        wp_enqueue_script( 'swiper-config', get_template_directory_uri() . '/js/swiperConfig.js', array( 'jquery' ), '1.0.0', true );
+        wp_register_script('swiper-plugin', get_template_directory_uri() . '/js/swiper-plugin.js');
+        wp_enqueue_script('swiper-plugin');
+
+        
+        wp_enqueue_script('ajax-script', get_template_directory_uri() . '/js/ajax.js', array('jquery'), '1.0', true);
+        wp_localize_script('ajax-script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
+    }
     wp_register_script('general', get_template_directory_uri() . '/js/general.js');
     wp_enqueue_script('general');
 
@@ -112,20 +134,31 @@ function generic_title($title)
         return $title;
     }
 }
+
+
 function generic_schema_type()
 {
     $schema = 'https://schema.org/';
-    if (is_single()) {
-        $type = "Article";
-    } elseif (is_author()) {
-        $type = 'ProfilePage';
-    } elseif (is_search()) {
-        $type = 'SearchResultsPage';
-    } else {
-        $type = 'WebPage';
+    $type = 'WebPage'; // Default value
+
+    switch (true) {
+        case is_single():
+            $type = 'Article';
+            break;
+        case is_author():
+            $type = 'ProfilePage';
+            break;
+        case is_search():
+            $type = 'SearchResultsPage';
+            break;
+        default:
+            $type = 'WebPage';
     }
+
     echo 'itemscope itemtype="' . $schema . $type . '"';
 }
+
+
 add_filter('nav_menu_link_attributes', 'generic_schema_url', 10);
 function generic_schema_url($atts)
 {
@@ -160,6 +193,7 @@ function generic_image_insert_override($sizes)
     unset($sizes['2048x2048']);
     return $sizes;
 }
+
 add_action('widgets_init', 'generic_widgets_init');
 function generic_widgets_init()
 {
@@ -235,7 +269,7 @@ function themePostTypes()
             'publicly_queryable' => true,
             'public' => true,
             'show_ui' => true,
-            'hierarchical' => false, // like posts
+            'hierarchical' => true, // like posts
             'show_in_rest' => true,
             'supports' => array(
                 'title',
@@ -295,7 +329,7 @@ function themePostTypes()
             'publicly_queryable' => true,
             'public' => true,
             'show_ui' => true,
-            'hierarchical' => false, // like posts
+            'hierarchical' => true, // like posts
             'supports' => array(
                 'title',
                 'page-attributes',
@@ -306,3 +340,38 @@ function themePostTypes()
     );
 
 }
+
+
+// Function to handle the AJAX request
+function get_services_by_tab()
+{
+    $taxonomy = 'categoria';
+    $term = isset($_POST['tab']) ? $_POST['tab'] : '';
+    $args = array(
+        'post_type' => 'services',
+        'posts_per_page' => -1,
+        'order' => 'ASC',
+        'orderby' => 'menu_order',
+        'post_status' => 'publish',
+    );
+
+    if (!empty($term)) {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => $taxonomy,
+                'field'    => 'slug',
+                'terms'    => $term,
+            ),
+        );
+    }
+
+    $getAllServices = new WP_Query($args);
+
+    // Include the template file to generate the HTML
+    include 'services-template.php';
+
+    die();
+}
+add_action('wp_ajax_get_services_by_tab', 'get_services_by_tab');
+add_action('wp_ajax_nopriv_get_services_by_tab', 'get_services_by_tab');
+
