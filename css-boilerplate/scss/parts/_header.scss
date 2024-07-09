@@ -5,7 +5,9 @@
         &-phone {
             color: $theme-black;
             text-decoration: none;
+        }
 
+        &-email {
             &:hover {
                 text-decoration: underline;
             }

@@ -115,12 +115,13 @@
                             <div class="header-contact text-end pb-2 d-none d-lg-block">
                                 <a href="mailto:sales@stwards.com" class="header-contact-email">sales@stwards.com</a> 
                                 <span>|</span>
-                                <a href="tel:5073140714" class="header-contact-phone">Oficina 1: (+507) 314-0714</a>
+                                <span class="header-contact-phone">Oficina 1: (+507) 314-0714</span>
                             </div>
                             <nav id="menu" class="menu-wrapper text-end" role="navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
-                                <button type="button" class="menu-toggle d-lg-none mt-4"><span class="menu-icon">&#9776;</span><span
-                                        class="menu-text screen-reader-text"><?php esc_html_e(' Menu', 'generic'); ?></span></button>
-                                <?php wp_nav_menu(array( 'theme_location' => 'main-menu', 'container' => false,'menu_class' => 'text-end menu d-none d-lg-block', 'link_before' => '<span itemprop="name">', 'link_after' => '</span>' )); ?>
+                                <button type="button" class="menu-toggle d-lg-none mt-4">
+                                    <span class="menu-text screen-reader-text"><?php esc_html_e(' Menu', 'generic'); ?></span>
+                                </button>
+                                <?php wp_nav_menu(array( 'theme_location' => 'main-menu', 'container' => false,'menu_class' => 'text-center text-lg-end menu d-none d-lg-block', 'link_before' => '<span itemprop="name">', 'link_after' => '</span>' )); ?>
                             </nav>
                         </div>
                     </div>

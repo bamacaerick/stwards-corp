@@ -1,14 +1,29 @@
 .button {
+    display: inline-block;
+    padding: toRem(10) toRem(20);
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+
     &-primary {
         background-color: $primary;
         color: $white;
-        display: inline-block;
-        padding: toRem(10) toRem(20);
-        text-decoration: none;
 
         &:hover {
             background-color: $primary-hover;
             color: $white;
         }
+
+        &-reverse {
+            background-color: $white;
+            color: $primary;
+
+            &:hover,
+            &.active {
+                background-color: $primary;
+                color: $white;
+            }
+        }
     }
+    
 }

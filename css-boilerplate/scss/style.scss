@@ -3,11 +3,10 @@ Theme Name: Stwards Corporation
 Author: Erick Bamaca for custom design integration | Bryan Hadaway for core base
 Description: A fully responsive, SEO-friendly, Schema-ready, Accessibility-ready, based on Bootstrap 5.1 Grid and utilities.
 Tags: accessibility-ready, one-column, two-columns, right-sidebar, custom-logo, custom-menu, featured-images, microformats, sticky-post, threaded-comments, translation-ready, blog, e-commerce, portfolio
-Version: 1.0.0
-Requires PHP: 8.0
+Version: 1.4.0:22:05:22:45
+Requires PHP: 7.4
 */
 
-// @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'bootstrap.min';
 @import 'config'; // Override bootstrap variables values
 @import 'wpeditor';

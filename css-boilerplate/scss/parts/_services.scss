@@ -1,0 +1,10 @@
+.services {
+    background-color: $white;
+    border-radius: 24px 24px 0 0;
+    margin-top: -40px;
+
+    &-content {
+        background: transparent url('./images/services-bg.svg') left center no-repeat;
+        background-size: contain;
+    }
+}

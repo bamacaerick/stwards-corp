@@ -1,19 +1,32 @@
 <?php                    
-    query_posts( array('post_type' => 'services', 'posts_per_page' => 2, 'orderby' => 'menu_order') );
+    $homeServices = new WP_Query(array('post_type' => 'services', 'posts_per_page' => 2, 'orderby' => 'menu_order', 'order' => 'ASC') );
 ?>
-    <?php if( have_posts()) : $postNumber = 0;?>
+    <?php if( $homeServices->have_posts()) : $postNumber = 0;?>
         <div class="home-services py-5 position-relative">
             <div class="container">
                 <div class="row pt-3 pb-4">
-                    <h2 class="h1 text-center fw-bold">Services</h2>
+                    <h2 class="h1 text-center">Services</h2>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <?php while ( have_posts() ) : the_post(); $postNumber++; ?>
+                        <?php while ( $homeServices->have_posts() ) : $homeServices->the_post(); $postNumber++; ?>
                             <?php 
                                 $featuredImage = get_the_post_thumbnail_url(get_the_ID(),'full'); 
-                                $email = get_field('email', $post->ID);
-                                $phone = get_field('phone');    
+                                $email = get_field('email_field_value');
+                                $phone = get_field('phone_field_value');
+                                $introText = get_field('introductory_text');
+
+                                if(is_null($email) || empty($email)){
+                                    $email =  'sales@stwards.com'; 
+                                }
+
+                                if(is_null($phone) || empty($phone)){
+                                    $phone = 'Oficina 1: (+507) 314-0714';
+                                }
+
+                                if(is_null($introText) || empty($introText)){ 
+                                    $introText = get_the_excerpt(); 
+                                }
                             ?>
                             <div class="row <?php echo $postNumber <= 1 ? 'mb-5' : '';?>">
                                 <div class="col-12 col-md-6 p-md-0 <?php echo $postNumber > 1 ? 'order-md-last' : '';?>">
@@ -21,11 +34,11 @@
                                         <div class="align-self-center">
                                             <h3 class="h3 home-services-content-heading mb-3 text-black"><?php the_title(); ?></h3>
                                             <div class="home-services-content-info">
-                                                <p><?php echo get_the_excerpt(); ?></p>
+                                                <p class="lato-regular"><?php echo $introText; ?></p>
                                                 <p class="text-primary">
-                                                    <a href="mailto:sales@stwards.com">sales@stwards.com</a>
+                                                    <a class="home-services-content-link" href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
                                                     <span>|</span>
-                                                    <a href="tel:5073140714">Oficina 1: (+507) 314-0714</a>
+                                                    <span><?php echo $phone; ?></span>
                                                 </p>
                                             </div>
                                         </div>
@@ -43,7 +56,7 @@
         <div class="container pb-5">
             <div class="row">
                 <div class="col-12 text-center">
-                    <a href="#" class="button-primary">View more services</a>
+                    <a href="<?php echo home_url(); ?>/services" class="button button-primary">View more services</a>
                 </div>
             </div>
         </div>
